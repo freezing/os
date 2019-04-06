@@ -37,13 +37,13 @@ debug: os-image.bin kernel.elf
 # Generic rules for wildcards
 # To make an object, always compile from its .c
 %.o: %.c ${HEADERS}
-	${CC} ${CFLAGS} -m32 -ffreestanding -c $< -o $@
+	${CC} ${CFLAGS} -fno-pie -m32 -ffreestanding -c $< -o $@
 
 %.o: %.asm
-	nasm $< -f elf -o $@
+	nasm $< -f elf -o $@ -I boot/
 
 %.bin: %.asm
-	nasm $< -f bin -o $@
+	nasm $< -f bin -o $@ -I boot/
 
 clean:
 	rm -rf *.bin *.dis *.o os-image.bin *.elf
