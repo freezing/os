@@ -1,3 +1,5 @@
+#include "port.h"
+
 unsigned char read_byte_from_port(unsigned short port) {
   unsigned char result;
   // Inline assembler syntax
@@ -25,6 +27,6 @@ unsigned short read_word_from_port(unsigned short port) {
   return result;
 }
 
-unsigned short write_word_to_port(unsigned short port, unsigned short data) {
+void write_word_to_port(unsigned short port, unsigned short data) {
   __asm__("out %%ax, %%dx" : : "a" (data), "d" (port));
 }

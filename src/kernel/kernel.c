@@ -1,7 +1,7 @@
 #include "../drivers/port.h"
 
-const char COLOR = 0x0f;
-const char ANOTHER_COLOR = 0xf0;
+#define COLOR 0x0f
+#define ANOTHER_COLOR 0xf0
 
 void draw(const char color) {
   char* video_memory = (char*) 0xb8000;
