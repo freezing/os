@@ -32,7 +32,7 @@ run: os-image.bin
 # Open the connection to qemu and load our kernel-object file with symbols
 debug: os-image.bin kernel.elf
 	qemu-system-x86_64 -s -fda os-image.bin &
-	${GDB} -ex "target remote localhost:1234" -ex "symbol-file kernel.elf"
+	${GDB} -ex "target remote :1234" -ex "symbol-file kernel.elf"
 
 # Generic rules for wildcards
 # To make an object, always compile from its .c
