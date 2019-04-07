@@ -1,6 +1,6 @@
 #include "keyboard.h"
 #include "port.h"
-#include "../cpu.isr.h"
+#include "../cpu/isr.h"
 #include "screen.h"
 
 static void keyboard_callback(registers_t regs) {
@@ -21,7 +21,7 @@ void init_keyboard() {
 
 // See: https://www.win.tue.nl/~aeb/linux/kbd/scancodes-1.html
 // for more details.
-static void print_scancode_as_keyboard_key(u8 scancode) {
+void print_scancode_as_keyboard_key(u8 scancode) {
   switch (scancode) {
         case 0x0:
             kprint("ERROR");
@@ -205,7 +205,7 @@ static void print_scancode_as_keyboard_key(u8 scancode) {
                 kprint("Unknown key down");
             } else if (scancode <= 0x39 + 0x80) {
                 kprint("key up ");
-                print_letter(scancode - 0x80);
+                print_scancode_as_keyboard_key(scancode - 0x80);
             } else kprint("Unknown key up");
             break;
     }
