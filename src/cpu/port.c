@@ -9,7 +9,7 @@ unsigned char read_byte_from_port(unsigned short port) {
   //   '"d" (port)': map the C variable '(port)' into EDX register
   //   
   //   Inputs and outputs are separated by colons
-  __asm__("in %%dx, %%al" : "=a" (result) : "d" (port));
+  asm("in %%dx, %%al" : "=a" (result) : "d" (port));
   return result;
 }
 
@@ -18,15 +18,15 @@ void write_byte_to_port(unsigned short port, unsigned char data) {
   // nothing is returned, thus, no equals '=' in the asm syntax.
   // However, we see a comma since there are two variables in the input area
   // and none in the 'return' area.
-  __asm__("out %%al, %%dx" : : "a" (data), "d" (port));
+  asm("out %%al, %%dx" : : "a" (data), "d" (port));
 }
 
 unsigned short read_word_from_port(unsigned short port) {
   unsigned short result;
-  __asm__("in %%dx, %%ax" : "=a" (result) : "d" (port));
+  asm("in %%dx, %%ax" : "=a" (result) : "d" (port));
   return result;
 }
 
 void write_word_to_port(unsigned short port, unsigned short data) {
-  __asm__("out %%ax, %%dx" : : "a" (data), "d" (port));
+  asm("out %%ax, %%dx" : : "a" (data), "d" (port));
 }
