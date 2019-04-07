@@ -1,5 +1,4 @@
 #include "timer.h"
-#include "types.h"
 #include "isr.h"
 #include "../libc/function.h"
 

@@ -1,7 +1,7 @@
 #ifndef MEM_H
 #define MEM_H
 
-#include "../cpu/types.h"
+#include "../cpu/type.h"
 
 // Copies the memory from source to destination. See memcpy docs.
 void memory_copy(char *source, char *dest, int nbytes);
