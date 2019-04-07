@@ -1,9 +1,13 @@
 #ifndef STRING_H
 #define STRING_H
 
-// Converts integer to ASCII in reversed order.
+// Converts integer to ASCII.
 // This method assumes that the result can fit in the destination array.
 void int_to_ascii(int n, char str[]);
+
+// Converts the HEX to ASCII.
+// This method assumes that the result can fit in the destination array.
+void hex_to_ascii(int hex_number, char str[]);
 
 // Reverses the specified string in place.
 void reverse(char s[]);
