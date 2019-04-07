@@ -1,3 +1,6 @@
+#ifndef SCREEN_H
+#define SCREEN_H
+
 #define VIDEO_ADDRESS 0xb8000
 #define MAX_ROWS 25
 #define MAX_COLS 80
@@ -19,3 +22,5 @@ void kprint_at(char *message, int col, int row);
 
 // Prints the message at the current offset.
 void kprint(char *message);
+
+#endif
