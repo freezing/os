@@ -143,11 +143,11 @@ void irq_handler(registers_t r) {
     }
 }
 
-void irq_install() {
+void irq_install(void (*keyboard_callback)(char *input)) {
   // Enable interruptions.
   asm volatile("sti");
   // IRQ0: Timer.
   init_timer(50);
   // IRQ1: Keyboard.
-  init_keyboard();
+  init_keyboard(keyboard_callback);
 }

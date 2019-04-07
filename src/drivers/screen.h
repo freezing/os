@@ -23,4 +23,13 @@ void kprint_at(char *message, int col, int row);
 // Prints the message at the current offset.
 void kprint(char *message);
 
+// Removes the value at the current cursor position
+// and moves the cursor backwards by one column.
+// If the current column was 0,
+// it goes to the previous row.
+// TODO: Shell dealing with screen would have been much better because it would have
+// information about how many characters exist in the previous row.
+// Fix this.
+void kprint_backspace();
+
 #endif

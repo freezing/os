@@ -3,6 +3,9 @@
 
 #include "../cpu/types.h"
 
-void init_keyboard();
+// Initializes the keyboard and registers the keyboard callback
+// that is invoked on each ENTER key pressed with the data
+// on the line.
+void init_keyboard(void (*keyboard_callback)(char *input));
 
 #endif
