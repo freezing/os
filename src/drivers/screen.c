@@ -1,6 +1,7 @@
 #include "screen.h"
-#include "../kernel/util.h"
 #include "port.h"
+#include "../libc/mem.h"
+#include "../libc/string.h"
 
 // Declaration of private functions.
 

@@ -3,7 +3,8 @@
 #include "../drivers/keyboard.h"
 #include "timer.h"
 #include "../drivers/screen.h"
-#include "../kernel/util.h"
+#include "../libc/string.h"
+#include "../libc/mem.h"
 
 isr_t interrupt_handlers[256];
 
