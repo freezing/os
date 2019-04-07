@@ -1,5 +1,5 @@
 #include "string.h"
-#include "../cpu/type.h"
+#include <stdint.h>
 
 void int_to_ascii(int n, char str[]) {
   int i;
@@ -25,7 +25,7 @@ void hex_to_ascii(int hex_number, char str[]) {
   strappend(str, 'x');
   char zeros = 0;
 
-  s32 tmp;
+  int32_t tmp;
   int i;
   for (i = 28; i > 0; i -= 4) {
     tmp = (hex_number >> i) & 0xF;

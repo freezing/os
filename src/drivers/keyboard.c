@@ -30,7 +30,7 @@ static void (*kernel_keyboard_callback)(char *input);
 
 static void keyboard_callback_internal(registers_t regs) {
   // The PIC leaves us the scancode in port 0x60.
-  u8 scancode = read_byte_from_port(0x60);
+  uint8_t scancode = read_byte_from_port(0x60);
 
   if (scancode > SC_MAX) return;
   else if (scancode == BACKSPACE) {
@@ -58,7 +58,7 @@ void init_keyboard(void (*keyboard_callback)(char *input)) {
 
 // See: https://www.win.tue.nl/~aeb/linux/kbd/scancodes-1.html
 // for more details.
-void print_scancode_as_keyboard_key(u8 scancode) {
+void print_scancode_as_keyboard_key(uint8_t scancode) {
   switch (scancode) {
         case 0x0:
             kprint("ERROR");

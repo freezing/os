@@ -1,7 +1,7 @@
 #ifndef KEYBOARD_H
 #define KEYBOARD_H
 
-#include "../cpu/type.h"
+#include <stdint.h>
 
 // Initializes the keyboard and registers the keyboard callback
 // that is invoked on each ENTER key pressed with the data
