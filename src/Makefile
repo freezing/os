@@ -2,8 +2,8 @@
 # $< = first dependency
 # $^ = all dependencies
 
-C_SOURCES = $(wildcard kernel/*.c drivers/*.c)
-HEADERS = $(wildcard kernel/*.h drivers/*.h)
+C_SOURCES = $(wildcard kernel/*.c drivers/*.c cpu/*.c)
+HEADERS = $(wildcard kernel/*.h drivers/*.h cpu/*.h)
 # Nice syntax for file extension replacement
 OBJ = ${C_SOURCES:.c=.o cpu/interrupt.o}
 
@@ -33,7 +33,7 @@ run: os-image.bin
 
 # Open the connection to qemu and load our kernel-object file with symbols
 debug: os-image.bin kernel.elf
-	${QEMU}	-s -fda os-image.bin &
+	${QEMU}	-s -fda os-image.bin -d guest_errors,int &
 	${GDB} -ex "target remote :1234" -ex "symbol-file kernel.elf"
 
 # Generic rules for wildcards
@@ -42,11 +42,11 @@ debug: os-image.bin kernel.elf
 	${CC} ${CFLAGS} -ffreestanding -c $< -o $@
 
 %.o: %.asm
-	nasm $< -f elf32 -o $@
+	nasm $< -f elf32 -o $@ -I boot/
 
 %.bin: %.asm
-	nasm $< -f bin -o $@
+	nasm $< -f bin -o $@ -I boot/
 
 clean:
 	rm -rf *.bin *.dis *.o os-image.bin *.elf
-	rm -rf kernel/*.o boot/*.bin drivers/*.o boot/*.o
+	rm -rf kernel/*.o boot/*.bin drivers/*.o boot/*.o cpu/*.o
