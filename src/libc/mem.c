@@ -22,7 +22,7 @@ void memory_set(uint8_t *dest, uint8_t val, uint32_t len) {
 uint32_t free_mem_addr = 0x10000;
 
 // Implementation is just a pointer to some free memory that keeps growing.
-uint32_t kmalloc(uint32_t size, int align, uint32_t *phys_addr) {
+uint32_t kmalloc(size_t size, int align, uint32_t *phys_addr) {
   if (align == 1 && (free_mem_addr & 0xFFFFF000)) {
     free_mem_addr &= 0xFFFFF000;
     free_mem_addr += 0x1000;
