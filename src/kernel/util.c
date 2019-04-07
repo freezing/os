@@ -1,4 +1,5 @@
 #include "util.h"
+#include "../cpu/types.h"
 
 void memory_copy(char *source, char *dest, int nbytes) {
   int i;
@@ -10,8 +11,8 @@ void memory_copy(char *source, char *dest, int nbytes) {
 void memory_set(u8 *dest, u8 val, u32 len) {
   u8 *tmp = (u8 *)dest;
   while (len != 0) {
-    *temp = val;
-    temp++;
+    *tmp = val;
+    tmp++;
     len--;
   }
 }

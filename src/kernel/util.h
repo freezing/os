@@ -1,5 +1,7 @@
 #ifndef UTIL_H
-#define UTILH
+#define UTIL_H
+
+#include "../cpu/types.h"
 
 // Copies the memory from source to destination. See memcpy docs.
 void memory_copy(char *source, char *dest, int nbytes);
