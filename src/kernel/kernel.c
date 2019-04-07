@@ -37,7 +37,7 @@ void run_shell() {
   // TODO: Ideally, shell would register the IRQ listener for keyboard here.
 }
 
-void main() {
+void kernel_main() {
   isr_install();
   irq_install(on_keyboard_input_changed);
   run_shell();
