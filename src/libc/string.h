@@ -14,5 +14,16 @@ void reverse(char s[]);
 // If null byte doesn't exist, this method will eventually try to access invalid address.
 int strlen(char s[]);
 
+// Removes the last character from the string.
+void strbackspace(char s[]);
+
+// Appends a character c to the string.
+void strappend(char s[], char c);
+
+// Compare strings s1 and s2.
+// Returns 0 if they are equal.
+// Returns a negative number if s1 is lexicographically before s2.
+// Returns a position number if s1 is lexicographically after s2.
+int strcmp(char s1[], char s2[]);
 
 #endif
