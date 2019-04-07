@@ -75,6 +75,7 @@ void kprint_backspace() {
   int row = get_offset_row(offset);
   int col = get_offset_col(offset);
   print_char(0x08, col, row, WHITE_ON_BLACK);
+  set_cursor_offset(offset);
 }
 
 // Implementation of the private kernel functions.
