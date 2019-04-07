@@ -1,3 +1,7 @@
+#include "../cpu/isr.h"
+#include "../drivers/screen.h"
+#include "../libc/string.h"
+#include "../libc/mem.h"
 
 void on_keyboard_input_changed(char* input) {
   if (strcmp(input, "END") == 0) {
