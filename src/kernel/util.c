@@ -33,7 +33,7 @@ void int_to_ascii(int n, char str[]) {
   if (sign < 0) str[i++] = '-';
   str[i] = '\0';
 
-  // TODO: Reverse the string.
+  reverse(str);
 }
 
 void reverse(char s[]) {
