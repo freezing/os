@@ -22,11 +22,11 @@ os-image.bin: boot/bootsector.bin kernel.bin
 # '--oformat binary' deletes all symbols as a collateral, so we don't need
 # to 'strip' them manually on this case
 kernel.bin: boot/kernel_entry.o ${OBJ}
-	${LD} -melf_i386 -o $@ -Ttext 0x1000 $^ --oformat binary
+	${LD} -o $@ -Ttext 0x1000 $^ --oformat binary
 
 # Used for debugging purposes
 kernel.elf: boot/kernel_entry.o ${OBJ}
-	${LD} -melf_i386 -o $@ -Ttext 0x1000 $^ 
+	${LD} -o $@ -Ttext 0x1000 $^ 
 
 run: os-image.bin
 	${QEMU} -fda os-image.bin
@@ -39,13 +39,13 @@ debug: os-image.bin kernel.elf
 # Generic rules for wildcards
 # To make an object, always compile from its .c
 %.o: %.c ${HEADERS}
-	${CC} ${CFLAGS} -m32 -ffreestanding -c $< -o $@
+	${CC} ${CFLAGS} -ffreestanding -c $< -o $@
 
 %.o: %.asm
-	nasm $< -f elf32 -o $@ -I boot/
+	nasm $< -f elf32 -o $@
 
 %.bin: %.asm
-	nasm $< -f bin -o $@ -I boot/
+	nasm $< -f bin -o $@
 
 clean:
 	rm -rf *.bin *.dis *.o os-image.bin *.elf
