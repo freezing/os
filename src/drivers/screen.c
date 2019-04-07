@@ -1,4 +1,5 @@
 #include "screen.h"
+#include "../kernel/util.h"
 #include "port.h"
 
 // Declaration of private functions.
@@ -16,6 +17,9 @@ void set_cursor_offset(int offset);
 // Returns the offset of the next character.
 // Sets the video cursor to the returned offset.
 int print_char(char c, int col, int row, char attr);
+
+// Scrolls the screen such that the specified row is visible and at the bottom of the screen.
+void scroll_screen(int row);
 
 int get_offset(int col, int row);
 
@@ -40,7 +44,7 @@ void clear_screen() {
 void kprint_at(char *message, int col, int row) {
   // Set the cursor if col/row are negative.
   int offset;
-  if (col >= row && row >= 0) {
+  if (col >= 0 && row >= 0) {
     offset = get_offset(col, row);
   } else {
     offset = get_cursor_offset();
@@ -92,6 +96,24 @@ int print_char(char c, int col, int row, char attr) {
     video_memory[offset] = c;
     video_memory[offset + 1] = attr;
     offset += 2;
+  }
+
+  // Check if the offset is over screen size and scroll if so.
+  if (offset >= MAX_ROWS * MAX_COLS * 2) {
+    int i;
+    for (i = 1; i < MAX_ROWS; i++) {
+      // Copy the i-th row into the (i-1)th.
+      memory_copy(VIDEO_ADDRESS + get_offset(0, i),
+                  VIDEO_ADDRESS + get_offset(0, i - 1),
+                  MAX_COLS * 2);
+    }
+    // Blank last line.
+    char *last_line = VIDEO_ADDRESS + get_offset(0, MAX_ROWS - 1);
+    for (i = 0; i < MAX_COLS * 2; i++) {
+      last_line[i] = 0;
+    }
+
+    offset -= 2 * MAX_COLS;
   }
   set_cursor_offset(offset);
   return offset;
